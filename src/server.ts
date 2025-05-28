@@ -1,13 +1,34 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import dotenv from "dotenv";
+import balanceRouter from "./routes/balance.route";
+import pino from "pino";
+import pinoHttp from "pino-http";
+
+const logger = pino({
+  transport: {
+    target: "pino-pretty",
+    options: {
+      colorize: true,
+    },
+  },
+});
+
+const httpLogger = pinoHttp({ logger });
 
 dotenv.config();
 
 const app = express();
+app.use(httpLogger);
 const port = process.env.PORT || 3000;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+app.use("/api/v1", balanceRouter);
+
+app.use("/healthz", (_, res) => {
+  res.send("OK");
+});
+
+app.use((req, res) => {
+  res.status(404).send("Page not found");
 });
 
 app.listen(port, () => {
