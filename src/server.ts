@@ -5,6 +5,7 @@ import pino from "pino";
 import pinoHttp from "pino-http";
 import { initCronos } from "./middlewares/cronos";
 import healthRouter from "./routes/health.route";
+import { AppConfig } from "./config";
 
 const logger = pino({
   transport: {
@@ -23,16 +24,14 @@ initCronos();
 
 const app = express();
 app.use(httpLogger);
-const port = process.env.PORT || 3000;
 
 app.use("/api/v1", balanceRouter);
-
 app.use("/", healthRouter);
 
 app.use((req, res) => {
   res.status(404).send("Page not found");
 });
 
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+app.listen(AppConfig.PORT, () => {
+  console.log(`listening on port ${AppConfig.PORT}`);
 });

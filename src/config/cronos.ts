@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-
 dotenv.config();
-const CRONOS = {
+
+const CronosConfig = {
   API_KEY: process.env.CRONOS_API_KEY || "",
 };
 
-export default CRONOS;
+export default CronosConfig;

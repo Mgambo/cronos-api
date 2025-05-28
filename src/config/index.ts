@@ -1,3 +1,4 @@
-import CRONOS from "./cronos";
+import CronosConfig from "./cronos";
+import AppConfig from "./app";
 
-export { CRONOS };
+export { AppConfig, CronosConfig };

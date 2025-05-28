@@ -23,7 +23,7 @@ npm run dev
 
 ## Tasks
 
-- [ ] Technical
+- [x] Technical
 - [ ] Security
 - [ ] Performance
 - [ ] Input Validation & Error Handling

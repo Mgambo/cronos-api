@@ -1,14 +1,11 @@
 import { Client, CronosEvm } from "@crypto.com/developer-platform-client";
-import { CRONOS } from "../config";
+import { CronosConfig } from "../config";
 
 export const initCronos = () => {
+  console.log(process.env.NODE_ENV);
   Client.init({
-    chain:
-      process.env.NODE_ENV === "production"
-        ? CronosEvm.Mainnet
-        : CronosEvm.Testnet,
-    apiKey: CRONOS.API_KEY, // Explorer API,
-    provider: "https://evm-t3.cronos.org",
+    chain: !process.env.IS_TESTNET ? CronosEvm.Mainnet : CronosEvm.Testnet,
+    apiKey: CronosConfig.API_KEY, // Explorer API,
   });
 
   console.info(
