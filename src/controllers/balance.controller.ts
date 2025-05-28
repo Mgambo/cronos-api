@@ -1,13 +1,14 @@
-export const getBalanceController = (address: string) => {
-  return address;
+import { Token, Wallet } from "@crypto.com/developer-platform-client";
+
+export const getBalance = async (address: string) => {
+  const balance = await Wallet.balance(address);
+  return balance;
 };
 
-export const getTokenBalanceController = (
+export const getTokenBalance = async (
   address: string,
   tokenAddress: string
 ) => {
-  return {
-    address,
-    tokenAddress,
-  };
+  const tokenBalance = await Token.getERC20TokenBalance(address, tokenAddress);
+  return tokenBalance;
 };
