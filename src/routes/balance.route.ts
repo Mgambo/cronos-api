@@ -7,7 +7,6 @@ const balanceRouter = Router();
 balanceRouter.use(xAppKeyAuthMiddleware);
 
 balanceRouter.get("/balance/:address", getBalance);
-
 balanceRouter.get("/token-balance/:address/:tokenAddress", getTokenBalance);
 
 export default balanceRouter;

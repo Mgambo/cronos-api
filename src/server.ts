@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import balanceRouter from "./routes/balance.route";
 import pino from "pino";
@@ -23,6 +23,7 @@ dotenv.config();
 initCronos();
 
 const app = express();
+
 app.use(httpLogger);
 
 app.use("/api/v1", balanceRouter);
@@ -33,5 +34,7 @@ app.use((req, res) => {
 });
 
 app.listen(AppConfig.PORT, () => {
-  console.log(`listening on port ${AppConfig.PORT}`);
+  console.log(
+    `listening on port ${AppConfig.PORT}, env: ${process.env.NODE_ENV}`
+  );
 });
