@@ -10,7 +10,5 @@ export const initCronos = () => {
     apiKey: CronosConfig.API_KEY, // Explorer API,
   });
 
-  console.info(
-    `Initialized Cronos with apiKey: ${Client.getApiKey()} and chainId: ${Client.getChainId()}`
-  );
+  console.info(`Initialized Cronos with chainId: ${Client.getChainId()}`);
 };

@@ -29,7 +29,7 @@ app.use(httpLogger);
 app.use("/api/v1", balanceRouter);
 app.use("/", healthRouter);
 
-app.use((req, res) => {
+app.use((_, res) => {
   res.status(404).send("Page not found");
 });
 

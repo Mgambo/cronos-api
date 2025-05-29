@@ -19,7 +19,15 @@ export const xAppKeyAuthMiddleware = async (
     res.status(401).send("Invalid api key");
   } else {
     try {
-      await xAppKeyLimiter.consume(xAppKey); // consume 1 point
+      const remaining = await xAppKeyLimiter.consume(xAppKey); // consume 1 point
+      res.header({
+        "Retry-After": remaining.msBeforeNext / 1000,
+        "X-RateLimit-Limit": remaining.remainingPoints,
+        "X-RateLimit-Remaining": remaining.remainingPoints,
+        "X-RateLimit-Reset": Math.ceil(
+          (Date.now() + remaining.msBeforeNext) / 1000
+        ),
+      });
     } catch (err) {
       res.status(429).send("API key rate limit exceeded");
     }
