@@ -1,9 +1,9 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import balanceRouter from "./routes/balance.route";
 import pino from "pino";
 import pinoHttp from "pino-http";
-import { initCronos } from "./middlewares/cronos";
+import { initCronos } from "./cronos.client";
 import healthRouter from "./routes/health.route";
 import { AppConfig } from "./config";
 

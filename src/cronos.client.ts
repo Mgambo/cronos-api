@@ -1,5 +1,5 @@
 import { Client, CronosEvm } from "@crypto.com/developer-platform-client";
-import { CronosConfig } from "../config";
+import { CronosConfig } from "./config";
 
 export const initCronos = () => {
   console.log(process.env.NODE_ENV);

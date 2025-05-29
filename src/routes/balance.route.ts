@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { getBalance, getTokenBalance } from "../controllers/balance.controller";
-import { Errors } from "../enums/errors";
+import { xAppKeyAuthMiddleware } from "../middlewares/auth.middlewares";
 
 const balanceRouter = Router();
+
+balanceRouter.use(xAppKeyAuthMiddleware);
 
 balanceRouter.get("/balance/:address", getBalance);
 
