@@ -8,7 +8,10 @@ const xAppKeyLimiter = new RateLimiterMemory({
   duration: AppConfig.RATE_LIMIT_DURATION, // Per second
 });
 
-export const xAppKeyAuthMiddleware = async (
+/**
+ * @description Middleware to check api key
+ */
+const xAppKeyAuthMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -34,3 +37,5 @@ export const xAppKeyAuthMiddleware = async (
     next();
   }
 };
+
+export default xAppKeyAuthMiddleware;

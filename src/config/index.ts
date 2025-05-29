@@ -1,4 +1,5 @@
-import CronosConfig from "./cronos";
 import AppConfig from "./app";
+import CronosConfig from "./cronos";
+import RedisConfig from "./redis";
 
-export { AppConfig, CronosConfig };
+export { AppConfig, CronosConfig, RedisConfig };
