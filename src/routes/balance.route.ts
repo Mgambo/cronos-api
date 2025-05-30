@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getBalance, getTokenBalance } from "../controllers/balance.controller";
-import xAppKeyAuthMiddleware from "../middlewares/auth.middleware";
+import AuthMiddleware from "../middlewares/auth.middleware";
 import cacheMiddleware from "../middlewares/cache.middleware";
 import {
   getBalanceValidator,
@@ -11,7 +11,7 @@ import { validateParams } from "../middlewares/validator.middleware";
 const balanceRouter = Router();
 
 balanceRouter.use(cacheMiddleware(60));
-balanceRouter.use(xAppKeyAuthMiddleware);
+balanceRouter.use(AuthMiddleware);
 
 balanceRouter.get(
   "/balance/:address",

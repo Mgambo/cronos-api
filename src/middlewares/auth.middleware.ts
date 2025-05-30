@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { AppConfig } from "../config";
-// import rateLimit from "express-rate-limit";
 import { RateLimiterMemory } from "rate-limiter-flexible";
 import { apiKeyValidator } from "../validators/api-key.validator";
 
@@ -12,7 +11,7 @@ const xAppKeyLimiter = new RateLimiterMemory({
 /**
  * @description Middleware to check api key
  */
-const xAppKeyAuthMiddleware = async (
+const authMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -25,6 +24,7 @@ const xAppKeyAuthMiddleware = async (
   } else {
     try {
       const remaining = await xAppKeyLimiter.consume(value); // consume 1 point
+      console.log("error::", remaining);
       res.header({
         "Retry-After": remaining.msBeforeNext / 1000,
         "X-RateLimit-Limit": remaining.remainingPoints,
@@ -40,4 +40,4 @@ const xAppKeyAuthMiddleware = async (
   }
 };
 
-export default xAppKeyAuthMiddleware;
+export default authMiddleware;

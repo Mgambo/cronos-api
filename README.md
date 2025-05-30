@@ -27,6 +27,6 @@ npm run dev
 - [x] Security
 - [x] Performance
 - [ ] Input Validation & Error Handling
-- [ ] Testing
+- [x] Testing
 - [ ] Setup and Documentation
 - [ ] Bonus

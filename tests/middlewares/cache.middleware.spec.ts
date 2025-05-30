@@ -29,8 +29,6 @@ describe("cache.middleware", () => {
     mockRedisClientGet.mockResolvedValue(undefined);
     const response = await request(app).get("/test");
 
-    console.log(response.body);
-
     expect(response.body).toBeTruthy();
     expect(mockRedisClientSet).toHaveBeenCalledTimes(1);
   });
