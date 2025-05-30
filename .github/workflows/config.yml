@@ -1,17 +1,37 @@
-name: Docker Build Pipeline
+name: CI/CD Pipeline
 
 on:
-  workflow_run:
-    workflows: ["Test Pipeline"]
-    types:
-      - completed
+  push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    # Only run if test workflow succeeded
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+      run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
