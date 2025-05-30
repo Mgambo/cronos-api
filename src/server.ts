@@ -27,8 +27,8 @@ app.use(httpLogger);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/api/v1", balanceRouter);
+app.use("/api/v1", analyticsRouter);
 app.use("/", healthRouter);
-app.use("/", analyticsRouter);
 
 app.use((_, res) => {
   res.status(StatusCodes.NOT_FOUND).send("Page not found");

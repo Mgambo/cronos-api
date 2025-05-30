@@ -1,11 +1,14 @@
 import { Router } from "express";
 import { getAnalytics } from "../controllers/analytics.controller";
+import authMiddleware from "../middlewares/auth.middleware";
 
 const analyticsRouter = Router();
 
+analyticsRouter.use(authMiddleware);
+
 /**
  * @swagger
- * /analytics:
+ * /api/v1/analytics:
  *   get:
  *     summary: Analyze API usage statistics
  *     tags: [Analytics]
