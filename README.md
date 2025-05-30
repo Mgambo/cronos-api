@@ -1,9 +1,7 @@
 # Cronos API
 
-## Prerequisites
-
-node version >= 20.10.0
-npm version >= 10.2.3
+<img alt="Node Current" src="https://img.shields.io/badge/node-v20.10.0-blue">
+<img alt="Node Current" src="https://img.shields.io/badge/npm-v10.2.3-blue">
 
 ## Project Instructions
 
