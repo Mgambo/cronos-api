@@ -40,7 +40,6 @@ const cacheMiddleware = (ttl = 60) => {
 
       next();
     } catch (err) {
-      console.error(err);
       logger.error(`Cache middleware error: ${err}`);
       res
         .status(StatusCodes.INTERNAL_SERVER_ERROR)
