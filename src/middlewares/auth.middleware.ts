@@ -25,7 +25,6 @@ const authMiddleware = async (
   } else {
     try {
       const remaining = await xAppKeyLimiter.consume(value); // consume 1 point
-      console.log("error::", remaining);
       res.header({
         "Retry-After": remaining.msBeforeNext / 1000,
         "X-RateLimit-Limit": remaining.remainingPoints,

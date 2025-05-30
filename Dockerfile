@@ -1,6 +1,6 @@
 FROM node:18.16-alpine AS build
 
-RUN npm install -g @nestjs/cli typescript ts-node
+RUN npm install -g typescript ts-node
 
 WORKDIR /usr/src/app
 
@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm build
+RUN npm run build
 
 
 FROM node:18.16-alpine AS runtime
