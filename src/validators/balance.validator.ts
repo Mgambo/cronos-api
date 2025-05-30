@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { isAddress } from "viem";
 
-export const getBalanceSchema = Joi.object({
+export const getBalanceValidator = Joi.object({
   address: Joi.string()
     .custom((value: string, helpers) => {
       if (!isAddress(value)) return helpers.error("address");
@@ -12,7 +12,7 @@ export const getBalanceSchema = Joi.object({
     }),
 });
 
-export const getTokenBalanceSchema = Joi.object({
+export const getTokenBalanceValidator = Joi.object({
   address: Joi.string()
     .custom((value: string, helpers) => {
       if (!isAddress(value)) return helpers.error("address");

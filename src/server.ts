@@ -16,7 +16,7 @@ dotenv.config();
 initCronos();
 initRedis();
 
-const app = express();
+export const app = express();
 
 app.use(httpLogger);
 

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import redisClient from "../redis.client";
+import { logger } from "../logger";
 
 /**
  *
@@ -21,6 +22,7 @@ const cacheMiddleware = (ttl = 60) => {
       if (cachedData) {
         // return cached data
         const originalJson = res.json;
+
         res.json = (): Response => {
           return originalJson.call(res, cachedData);
         };
@@ -37,8 +39,9 @@ const cacheMiddleware = (ttl = 60) => {
 
       next();
     } catch (err) {
-      console.error("Cache middleware error:", err);
-      next();
+      console.error(err);
+      logger.error(`Cache middleware error: ${err}`);
+      res.status(500).json({ error: "internal server error" });
     }
   };
 };

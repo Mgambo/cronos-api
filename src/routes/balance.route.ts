@@ -3,8 +3,8 @@ import { getBalance, getTokenBalance } from "../controllers/balance.controller";
 import xAppKeyAuthMiddleware from "../middlewares/auth.middleware";
 import cacheMiddleware from "../middlewares/cache.middleware";
 import {
-  getBalanceSchema,
-  getTokenBalanceSchema,
+  getBalanceValidator,
+  getTokenBalanceValidator,
 } from "../validators/balance.validator";
 import { validateParams } from "../middlewares/validator.middleware";
 
@@ -15,12 +15,12 @@ balanceRouter.use(xAppKeyAuthMiddleware);
 
 balanceRouter.get(
   "/balance/:address",
-  validateParams(getBalanceSchema),
+  validateParams(getBalanceValidator),
   getBalance
 );
 balanceRouter.get(
   "/token-balance/:address/:tokenAddress",
-  validateParams(getTokenBalanceSchema),
+  validateParams(getTokenBalanceValidator),
   getTokenBalance
 );
 
