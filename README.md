@@ -1,8 +1,8 @@
 # Cronos API
 
 <p align="left">
-    <img alt="Node Current" src="https://img.shields.io/badge/node-v20.10.0-blue">
-    <img alt="Node Current" src="https://img.shields.io/badge/npm-v10.2.3-blue">
+    <img alt="Node 20.10.0" src="https://img.shields.io/badge/node-v20.10.0-blue">
+    <img alt="NPM 10.2.3" src="https://img.shields.io/badge/npm-v10.2.3-blue">
 </p>
 
 ## Project Instructions
