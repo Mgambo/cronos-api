@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import redisClient from "../redis.client";
 import { logger } from "../logger";
+import { StatusCodes } from "http-status-codes";
 
 /**
  *
@@ -41,7 +42,9 @@ const cacheMiddleware = (ttl = 60) => {
     } catch (err) {
       console.error(err);
       logger.error(`Cache middleware error: ${err}`);
-      res.status(500).json({ error: "internal server error" });
+      res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ error: "internal server error" });
     }
   };
 };

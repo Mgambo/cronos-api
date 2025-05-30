@@ -5,6 +5,7 @@ import {
   getBalance,
   getTokenBalance,
 } from "../../src/controllers/balance.controller";
+import { StatusCodes } from "http-status-codes";
 
 // Mock dependencies
 jest.mock("../../src/middlewares/auth.middleware", () =>
@@ -14,9 +15,11 @@ jest.mock("../../src/middlewares/cache.middleware", () =>
   jest.fn(() => (req, res, next) => next())
 );
 jest.mock("../../src/controllers/balance.controller", () => ({
-  getBalance: jest.fn((req, res) => res.status(200).json({ balance: "1000" })),
+  getBalance: jest.fn((req, res) =>
+    res.status(StatusCodes.OK).json({ balance: "1000" })
+  ),
   getTokenBalance: jest.fn((req, res) =>
-    res.status(200).json({ balance: "2000" })
+    res.status(StatusCodes.OK).json({ balance: "2000" })
   ),
 }));
 

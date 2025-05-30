@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { AppConfig } from "../config";
 import { RateLimiterMemory } from "rate-limiter-flexible";
 import { apiKeyValidator } from "../validators/api-key.validator";
+import { StatusCodes } from "http-status-codes";
 
 const xAppKeyLimiter = new RateLimiterMemory({
   points: AppConfig.RATE_LIMIT_MAX_REQUEST, // 10 requests
@@ -20,7 +21,7 @@ const authMiddleware = async (
   const { error, value } = apiKeyValidator.validate(xAppKey);
 
   if (error) {
-    res.status(401).send(error.message);
+    res.status(StatusCodes.UNAUTHORIZED).send(error.message);
   } else {
     try {
       const remaining = await xAppKeyLimiter.consume(value); // consume 1 point
@@ -34,7 +35,7 @@ const authMiddleware = async (
         ),
       });
     } catch (err) {
-      res.status(429).send("API key rate limit exceeded");
+      res.status(StatusCodes.TOO_MANY_REQUESTS).send("Rate limit exceeded");
     }
     next();
   }
