@@ -3,6 +3,7 @@ import { AppConfig } from "../config";
 import { RateLimiterMemory } from "rate-limiter-flexible";
 import { apiKeyValidator } from "../validators/api-key.validator";
 import { StatusCodes } from "http-status-codes";
+import { analyticsService } from "../services/analytics.service";
 
 const xAppKeyLimiter = new RateLimiterMemory({
   points: AppConfig.RATE_LIMIT_MAX_REQUEST, // 10 requests
@@ -25,6 +26,10 @@ const authMiddleware = async (
   } else {
     try {
       const remaining = await xAppKeyLimiter.consume(value); // consume 1 point
+
+      // Track API usage
+      analyticsService.trackRequest(value, req.path);
+
       res.header({
         "Retry-After": remaining.msBeforeNext / 1000,
         "X-RateLimit-Limit": remaining.remainingPoints,

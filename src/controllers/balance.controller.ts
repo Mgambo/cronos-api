@@ -1,4 +1,3 @@
-import { Token, Wallet } from "@crypto.com/developer-platform-client";
 import * as balanceService from "../services/balance.service";
 import { Errors } from "../enums/errors";
 import { NextFunction, Request, Response } from "express";

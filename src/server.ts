@@ -10,6 +10,7 @@ import swaggerUi from "swagger-ui-express";
 import { init as initRedis } from "./redis.client";
 import { specs } from "./swagger";
 import { StatusCodes } from "http-status-codes";
+import analyticsRouter from "./routes/analytics.route";
 
 const httpLogger = pinoHttp({ logger });
 
@@ -27,6 +28,7 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/api/v1", balanceRouter);
 app.use("/", healthRouter);
+app.use("/", analyticsRouter);
 
 app.use((_, res) => {
   res.status(StatusCodes.NOT_FOUND).send("Page not found");

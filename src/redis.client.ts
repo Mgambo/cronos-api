@@ -9,7 +9,7 @@ export const init = () => {
     host: RedisConfig.REDIS_HOST,
     port: Number(RedisConfig.REDIS_PORT),
     password: RedisConfig.REDIS_PASSWORD,
-    connectTimeout: 10000,
+    connectTimeout: 10,
     maxRetriesPerRequest: 3,
   });
 

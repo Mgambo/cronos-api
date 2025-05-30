@@ -83,4 +83,4 @@ Authentication and rate-limiting config are in [here](src/config/app.ts)
 - [x] Redis
 - [x] Dockerfile
 - [ ] Analytics: API usage state per key
-- [ ] CI configuration
+- [x] CI configuration
