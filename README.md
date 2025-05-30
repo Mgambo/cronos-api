@@ -76,11 +76,11 @@ Authentication and rate-limiting config are in [here](src/config/app.ts)
 - [x] Technical
 - [x] Security
 - [x] Performance
-- [ ] Input Validation & Error Handling
+- [x] Input Validation & Error Handling
 - [x] Testing
 - [x] Setup and Documentation
 - [x] Swagger
 - [x] Redis
 - [x] Dockerfile
-- [ ] Analytics: API usage state per key
+- [x] Analytics: API usage state per key
 - [x] CI configuration
