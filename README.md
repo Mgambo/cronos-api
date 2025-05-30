@@ -27,6 +27,8 @@ yarn
 cp .env.example .env
 ```
 
+After copied, please make sure to update all the api key and database configuration.
+
 ### Start development
 
 ```bash

@@ -92,9 +92,7 @@ describe("Auth Middleware", () => {
     );
 
     expect(mockResponse.status).toHaveBeenCalledWith(429);
-    expect(mockResponse.send).toHaveBeenCalledWith(
-      "API key rate limit exceeded"
-    );
+    expect(mockResponse.send).toHaveBeenCalledWith("Rate limit exceeded");
     expect(nextFunction).toHaveBeenCalled();
   });
 });

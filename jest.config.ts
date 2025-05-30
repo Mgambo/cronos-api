@@ -14,6 +14,9 @@ const config: Config.InitialOptions = {
     "!src/enums/**",
     "!src/validators/**",
     "!src/config/**",
+    "!src/swagger.ts",
+    "!src/cronos.client.ts",
+    "!src/server.ts",
   ],
   coverageDirectory: "coverage",
   coverageThreshold: {
