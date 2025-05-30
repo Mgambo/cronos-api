@@ -15,10 +15,34 @@ pnpm install
 yarn
 ```
 
+### Setup local environment
+
+```bash
+cp .env.example .env
+```
+
 ### Start development
 
 ```bash
 npm run dev
+```
+
+### Build project
+
+```bash
+npm run build
+```
+
+### Start and build project
+
+```bash
+npm start
+```
+
+### Test project
+
+```bash
+npm test
 ```
 
 ## Tasks
